@@ -21,17 +21,8 @@ One Laravel API is the single source of truth; five surfaces consume it - a CLI 
 
 ## How an agent works a task
 
-```mermaid
-flowchart LR
-    B[Backlog] --> C[Claim]
-    C --> W[Work<br/>fresh context window]
-    W --> S[Session log]
-    S --> R{Review gates}
-    R -->|changes requested| W
-    R -->|approved| E[Evaluation]
-    E --> RT[Retro → repo docs]
-    RT -. feeds back, lowers future token cost .-> B
-```
+![Stakker lifecycle](assets/stakker_lifecylce.svg)
+
 
 Each cycle spawns a **fresh** agent process so context starts empty - bounded by per-cycle timeouts, with live log streaming, API heartbeats and filesystem "nudge" controls (wake / pause / restart). Reviews and retros feed structured learning back into each repo, so the cost of the *next* task on that codebase goes down.
 

@@ -1,0 +1,106 @@
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace">
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="#5C6884"/></marker>
+    <marker id="ac" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="#46D2F0"/></marker>
+    <linearGradient id="hub" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123044"/><stop offset="1" stop-color="#0E2333"/>
+    </linearGradient>
+    <style>
+      .grp{fill:#141A28;stroke:#212a3e;stroke-width:1}
+      .glbl{fill:#5C6884;font-size:11px;letter-spacing:.14em}
+      .chip{fill:#151B2B;stroke:#28324A;stroke-width:1}
+      .t{fill:#E7ECF6;font-size:13px}
+      .s{fill:#8A95AC;font-size:10.5px}
+      .lb{font-size:10px;letter-spacing:.05em}
+      .eyebrow{fill:#46D2F0;font-size:12px;letter-spacing:.22em;opacity:.85}
+    </style>
+  </defs>
+
+  <!-- panel -->
+  <rect x="1" y="1" width="998" height="598" rx="16" fill="#0E1220" stroke="#1E2638"/>
+  <text x="34" y="42" class="eyebrow">STAKKER — SYSTEM ARCHITECTURE</text>
+
+  <!-- ===== TOP-LEFT: agent runtime ===== -->
+  <rect x="40" y="70" width="300" height="196" rx="12" class="grp"/>
+  <text x="58" y="92" class="glbl">AUTONOMOUS AGENT RUNTIME</text>
+  <rect x="70" y="104" width="240" height="46" rx="9" class="chip"/>
+  <text x="190" y="123" class="t" text-anchor="middle">Supervisor</text>
+  <text x="190" y="139" class="s" text-anchor="middle">tmux · launchd</text>
+  <path d="M190,150 L190,198" fill="none" stroke="#5C6884" stroke-width="1.4" marker-end="url(#a)"/>
+  <rect x="150" y="165" width="94" height="16" rx="3" fill="#141A28"/>
+  <text x="197" y="177" class="lb" fill="#8A95AC" text-anchor="middle">spawns / cycle</text>
+  <rect x="70" y="198" width="240" height="50" rx="9" class="chip"/>
+  <text x="190" y="219" class="t" text-anchor="middle">Headless Claude Code</text>
+  <text x="190" y="235" class="s" text-anchor="middle">fresh process per cycle</text>
+
+  <!-- ===== TOP-RIGHT: clients ===== -->
+  <rect x="676" y="70" width="284" height="196" rx="12" class="grp"/>
+  <text x="694" y="92" class="glbl">CLIENT SURFACES</text>
+  <rect x="706" y="104" width="228" height="44" rx="9" class="chip"/>
+  <text x="820" y="122" class="t" text-anchor="middle">CLI · TypeScript / Bun</text>
+  <text x="820" y="137" class="s" text-anchor="middle">shared human + agent interface</text>
+  <rect x="706" y="156" width="228" height="44" rx="9" class="chip"/>
+  <text x="820" y="174" class="t" text-anchor="middle">Desktop &amp; Web</text>
+  <text x="820" y="189" class="s" text-anchor="middle">React · Tauri</text>
+  <rect x="706" y="208" width="228" height="44" rx="9" class="chip"/>
+  <text x="820" y="226" class="t" text-anchor="middle">iOS</text>
+  <text x="820" y="241" class="s" text-anchor="middle">SwiftUI</text>
+
+  <!-- ===== MIDDLE: API hub ===== -->
+  <rect x="392" y="316" width="216" height="66" rx="11" fill="url(#hub)" stroke="#46D2F0" stroke-width="1.5"/>
+  <text x="500" y="343" fill="#EAF7FB" font-size="15" font-weight="600" text-anchor="middle">Stakker API</text>
+  <text x="500" y="362" fill="#9FD8E8" font-size="11" text-anchor="middle">Laravel 13 · ~158 endpoints</text>
+
+  <!-- agents -> API -->
+  <path d="M310,223 C356,223 352,349 392,349" fill="none" stroke="#46D2F0" stroke-width="1.6" marker-end="url(#ac)"/>
+  <rect x="300" y="270" width="132" height="16" rx="3" fill="#0E1220"/>
+  <text x="366" y="282" class="lb" fill="#46D2F0" text-anchor="middle">claim · work · report</text>
+
+  <!-- clients -> API -->
+  <path d="M706,126 C650,126 648,336 610,340" fill="none" stroke="#5C6884" stroke-width="1.3" marker-end="url(#a)"/>
+  <path d="M706,178 C662,178 660,350 610,350" fill="none" stroke="#5C6884" stroke-width="1.3" marker-end="url(#a)"/>
+  <path d="M706,230 C666,230 664,362 610,360" fill="none" stroke="#5C6884" stroke-width="1.3" marker-end="url(#a)"/>
+
+  <!-- ===== BOTTOM-LEFT: model routing ===== -->
+  <rect x="40" y="410" width="452" height="164" rx="12" class="grp"/>
+  <text x="58" y="432" class="glbl">PER-TASK MODEL ROUTING</text>
+  <rect x="176" y="444" width="180" height="42" rx="9" class="chip"/>
+  <text x="266" y="470" class="t" text-anchor="middle">Runtime resolver</text>
+  <!-- API -> resolver -->
+  <path d="M440,376 C360,414 320,430 320,444" fill="none" stroke="#5C6884" stroke-width="1.3" marker-end="url(#a)"/>
+  <!-- resolver -> runtimes -->
+  <g fill="none" stroke="#5C6884" stroke-width="1.2" marker-end="url(#a)">
+    <path d="M230,486 C150,505 108,510 92,526"/>
+    <path d="M250,486 C205,506 188,512 178,526"/>
+    <path d="M266,486 L266,526"/>
+    <path d="M282,486 C327,506 344,512 354,526"/>
+    <path d="M302,486 C382,505 424,510 440,526"/>
+  </g>
+  <g class="chip"><rect x="54" y="526" width="76" height="34" rx="8"/><rect x="140" y="526" width="76" height="34" rx="8"/><rect x="228" y="526" width="76" height="34" rx="8"/><rect x="316" y="526" width="76" height="34" rx="8"/><rect x="402" y="526" width="76" height="34" rx="8"/></g>
+  <g class="t" text-anchor="middle" font-size="12">
+    <text x="92" y="547">Claude</text><text x="178" y="547">Codex</text><text x="266" y="547">Ollama</text><text x="354" y="547">ZAI</text><text x="440" y="547">MiniMax</text>
+  </g>
+
+  <!-- ===== BOTTOM-RIGHT: state & realtime ===== -->
+  <rect x="620" y="410" width="340" height="164" rx="12" class="grp"/>
+  <text x="638" y="432" class="glbl">STATE &amp; REALTIME</text>
+  <!-- postgres cylinder -->
+  <g>
+    <path d="M664,470 a44,11 0 0 0 88,0 v56 a44,11 0 0 1 -88,0 z" fill="#151B2B" stroke="#28324A"/>
+    <ellipse cx="708" cy="470" rx="44" ry="11" fill="#1B2336" stroke="#28324A"/>
+    <text x="708" y="512" class="t" text-anchor="middle" font-size="12">PostgreSQL</text>
+  </g>
+  <!-- reverb -->
+  <rect x="800" y="472" width="136" height="52" rx="9" class="chip"/>
+  <text x="868" y="493" class="t" text-anchor="middle">Reverb</text>
+  <text x="868" y="509" class="s" text-anchor="middle">WebSockets</text>
+  <!-- API -> state -->
+  <path d="M488,382 C560,420 620,450 700,468" fill="none" stroke="#5C6884" stroke-width="1.3" marker-end="url(#a)"/>
+  <path d="M544,382 C690,414 792,442 838,472" fill="none" stroke="#5C6884" stroke-width="1.3" marker-end="url(#a)"/>
+  <!-- realtime -> clients (dashed, up right edge) -->
+  <path d="M905,472 C950,404 950,300 906,266" fill="none" stroke="#46D2F0" stroke-width="1.4" stroke-dasharray="5 5" marker-end="url(#ac)"/>
+  <g transform="rotate(90 926 372)">
+    <rect x="848" y="364" width="156" height="16" rx="3" fill="#0E1220"/>
+    <text x="926" y="376" class="lb" fill="#46D2F0" text-anchor="middle" opacity=".95">live task &amp; session updates</text>
+  </g>
+</svg>

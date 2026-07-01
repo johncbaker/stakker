@@ -96,7 +96,7 @@ Each cycle spawns a **fresh** agent process so context starts empty - bounded by
 | **Desktop & Web app** | React 19 · Vite · Tauri 2 (Rust shell) · TanStack · Tailwind / shadcn |
 | **iOS** | Swift · SwiftUI (native client) |
 | **Supervisor** | Bash · tmux · launchd — the autonomous agent runtime |
-| **Docs** | Docusaurus · Bruno (API collections) |
+| **Docs** | Docusaurus |
 | **Quality** | PHPUnit · bun:test · Vitest · XCTest · Semgrep · GitHub Actions CI |
 
 ## At a glance

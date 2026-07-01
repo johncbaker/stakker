@@ -15,49 +15,7 @@ Stakker orchestrates fleets of long-lived, headless AI coding agents - alongside
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    subgraph clients[Client surfaces]
-        direction LR
-        CLI[CLI<br/>TypeScript · Bun]
-        APP[Desktop &amp; Web<br/>React · Tauri]
-        IOS[iOS<br/>SwiftUI]
-    end
-
-    subgraph runtime[Autonomous agent runtime]
-        direction LR
-        SUP[Supervisor<br/>tmux · launchd]
-        AG[Headless Claude Code agents]
-        SUP -->|spawns fresh process per cycle| AG
-    end
-
-    API[["Stakker API<br/>Laravel 13 · ~158 endpoints"]]
-
-    subgraph state[State &amp; realtime]
-        direction LR
-        PG[(PostgreSQL)]
-        WS[Reverb<br/>WebSockets]
-    end
-
-    subgraph routing[Per-task model routing]
-        RT{Runtime resolver}
-        RT --> CLA[Claude]
-        RT --> COD[Codex]
-        RT --> OLL[Ollama]
-        RT --> ZAI[ZAI]
-        RT --> MMX[MiniMax]
-    end
-
-    CLI --> API
-    APP --> API
-    IOS --> API
-    AG -->|claim · work · report| API
-    API --> PG
-    API --> RT
-    API --> WS
-    WS -. live task &amp; session updates .-> APP
-    WS -. live task &amp; session updates .-> IOS
-```
+![Stakker architecture](assets/stakker_architecture.svg)
 
 One Laravel API is the single source of truth; five surfaces consume it - a CLI (the shared human **and** agent interface), a desktop/web app, a native iOS client, and the autonomous supervisor that runs the agents themselves.
 
